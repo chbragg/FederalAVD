@@ -817,7 +817,7 @@
 									"defaultValue": "DoNotScale",
 									"toolTip": "Use only allowed characters",
 									"constraints": {
-										"required": true,
+										"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]",
 										"regex": "^[a-z0-9A-Z]{1,30}$",
 										"validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
 									},
@@ -853,7 +853,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "8:00",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]",
 														"validations": [
 															{
 																"regex": "^(0?[1-9]|1[0-9]|2[0-3]):[0-5][0-9]$",
@@ -871,7 +871,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "20",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]",
 														"validations": [
 															{
 																"regex": "^([1-9][0-9]?|100)$",
@@ -889,7 +889,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "60",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]",
 														"validations": [
 															{
 																"regex": "^([1-9][0-9]?|100)$",
@@ -917,7 +917,7 @@
 															}
 														],
 														"defaultValue": "Breadth-First",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]"
 													}
 												}
 											}
@@ -965,7 +965,7 @@
 															}
 														],
 														"defaultValue": "Weekdays",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -977,7 +977,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "8:00",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^(0?[1-9]|1[0-9]|2[0-3]):[0-5][0-9]$",
@@ -1009,7 +1009,7 @@
 															}
 														],
 														"defaultValue": "None",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1021,7 +1021,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "10",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^\\d+$",
@@ -1053,7 +1053,7 @@
 															}
 														],
 														"defaultValue": "None",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1065,7 +1065,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "10",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^\\d+$",
@@ -1097,7 +1097,7 @@
 															}
 														],
 														"defaultValue": "None",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											}
@@ -1127,7 +1127,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "9:00",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]",
 														"validations": [
 															{
 																"regex": "^(0?[1-9]|1[0-9]|2[0-3]):[0-5][0-9]$",
@@ -1155,7 +1155,7 @@
 															}
 														],
 														"defaultValue": "Depth-First",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]"
 													}
 												}
 											}
@@ -1203,7 +1203,7 @@
 															}
 														],
 														"defaultValue": "Weekdays",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1215,7 +1215,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "9:00",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^(0?[1-9]|1[0-9]|2[0-3]):[0-5][0-9]$",
@@ -1233,7 +1233,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "10",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^\\d+$",
@@ -1265,7 +1265,7 @@
 															}
 														],
 														"defaultValue": "None",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1277,7 +1277,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "10",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^\\d+$",
@@ -1309,7 +1309,7 @@
 															}
 														],
 														"defaultValue": "None",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											}
@@ -1339,7 +1339,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "18:00",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]",
 														"validations": [
 															{
 																"regex": "^(0?[1-9]|1[0-9]|2[0-3]):[0-5][0-9]$",
@@ -1357,7 +1357,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "10",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]",
 														"validations": [
 															{
 																"regex": "^([1-9][0-9]?|100)$",
@@ -1375,7 +1375,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "90",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]",
 														"validations": [
 															{
 																"regex": "^([1-9][0-9]?|100)$",
@@ -1403,7 +1403,7 @@
 															}
 														],
 														"defaultValue": "Depth-First",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]"
 													}
 												}
 											}
@@ -1451,7 +1451,7 @@
 															}
 														],
 														"defaultValue": "Weekdays",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1481,7 +1481,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "10",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^\\d+$",
@@ -1513,7 +1513,7 @@
 															}
 														],
 														"defaultValue": "None",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1525,7 +1525,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "10",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^\\d+$",
@@ -1557,7 +1557,7 @@
 															}
 														],
 														"defaultValue": "None",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											}
@@ -1582,7 +1582,7 @@
 												"value": false
 											}
 										],
-										"required": true
+										"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]"
 									},
 									"visible": "[and(steps('controlPlane').scalingPlan.deployScalingPlan, equals(steps('controlPlane').hostPool.type, 'Pooled'))]"
 								},
@@ -1593,7 +1593,7 @@
 									"placeholder": "30",
 									"toolTip": "Use only integers",
 									"constraints": {
-										"required": true,
+										"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]",
 										"regex": "^(?:[1-9]|[1-9][0-9]|1[01][0-9]|120)$",
 										"validationMessage": "Must be an integer from 1 - 120."
 									},
@@ -1621,7 +1621,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "22:00",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]",
 														"validations": [
 															{
 																"regex": "^(0?[1-9]|1[0-9]|2[0-3]):[0-5][0-9]$",
@@ -1649,7 +1649,7 @@
 															}
 														],
 														"defaultValue": "Depth-First",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Pooled')]"
 													}
 												}
 											}
@@ -1689,7 +1689,7 @@
 															}
 														],
 														"defaultValue": "Weekdays",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1701,7 +1701,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "22:00",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^(0?[1-9]|1[0-9]|2[0-3]):[0-5][0-9]$",
@@ -1719,7 +1719,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "10",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^\\d+$",
@@ -1751,7 +1751,7 @@
 															}
 														],
 														"defaultValue": "None",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1763,7 +1763,7 @@
 													"type": "Microsoft.Common.TextBox",
 													"placeholder": "10",
 													"constraints": {
-														"required": true,
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
 																"regex": "^\\d+$",
@@ -1795,7 +1795,7 @@
 															}
 														],
 														"defaultValue": "None",
-														"required": true
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											}
