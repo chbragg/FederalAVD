@@ -23,47 +23,8 @@ param hostPoolType string
 @sys.description('Optional. Provide a tag to be used for hosts that should not be affected by the scaling plan.')
 param exclusionTag string = ''
 
-@sys.description('Optional. The schedules related to this scaling plan. If no value is provided a default schedule will be provided.')
-param schedules array = [
-  {
-    rampUpStartTime: {
-      hour: 7
-      minute: 0
-    }
-    peakStartTime: {
-      hour: 8
-      minute: 0
-    }
-    rampDownStartTime: {
-      hour: 17
-      minute: 0
-    }
-    offPeakStartTime: {
-      hour: 20
-      minute: 0
-    }
-    name: 'weekdays_schedule'
-    daysOfWeek: [
-      'Monday'
-      'Tuesday'
-      'Wednesday'
-      'Thursday'
-      'Friday'
-    ]
-    rampUpLoadBalancingAlgorithm: 'DepthFirst'
-    rampUpMinimumHostsPct: 20
-    rampUpCapacityThresholdPct: 60
-    peakLoadBalancingAlgorithm: 'DepthFirst'
-    rampDownLoadBalancingAlgorithm: 'DepthFirst'
-    rampDownMinimumHostsPct: 10
-    rampDownCapacityThresholdPct: 90
-    rampDownForceLogoffUsers: true
-    rampDownWaitTimeMinutes: 30
-    rampDownNotificationMessage: 'You will be logged off in 30 min. Make sure to save your work.'
-    rampDownStopHostsWhen: 'ZeroSessions'
-    offPeakLoadBalancingAlgorithm: 'DepthFirst'
-  }
-]
+@sys.description('Required. The schedules related to this scaling plan. Schedules must be pre-built for the appropriate host pool type (Personal or Pooled).')
+param schedules array
 
 @sys.description('Optional. Tags of the resource.')
 param tags object = {}

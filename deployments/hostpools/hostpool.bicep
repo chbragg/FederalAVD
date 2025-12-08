@@ -743,48 +743,58 @@ var scalingPlanSchedulesBase = [for i in range(0, length(scalingPlanRampUpSchedu
       ? ['Saturday', 'Sunday']
       : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'])
     : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
-  rampUpLoadBalancingAlgorithm: scalingPlanRampUpSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
-  peakLoadBalancingAlgorithm: scalingPlanPeakSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
-  rampDownLoadBalancingAlgorithm: scalingPlanRampDownSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
-  offPeakLoadBalancingAlgorithm: scalingPlanOffPeakSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
-  rampDownForceLogoffUsers: scalingPlanForceLogoff
-  rampDownWaitTimeMinutes: scalingPlanMinsBeforeLogoff
-  rampDownStopHostsWhen: 'ZeroSessions'
 }]
 
 // Add Pooled-specific properties for capacity and percentage thresholds
 var scalingPlanSchedulesPooled = [for i in range(0, length(scalingPlanRampUpSchedule)): union(scalingPlanSchedulesBase[i], {
-  rampUpMinimumHostsPct: scalingPlanRampUpSchedule[i].?minimumHostsPct != null ? int(scalingPlanRampUpSchedule[i].minimumHostsPct) : null
-  rampUpCapacityThresholdPct: scalingPlanRampUpSchedule[i].?capacityThresholdPct != null ? int(scalingPlanRampUpSchedule[i].capacityThresholdPct) : null
+  rampUpLoadBalancingAlgorithm: scalingPlanRampUpSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
+  rampUpMinimumHostsPct: scalingPlanRampUpSchedule[i].?minimumHostsPct != null ? int(scalingPlanRampUpSchedule[i].minimumHostsPct) : 20
+  rampUpCapacityThresholdPct: scalingPlanRampUpSchedule[i].?capacityThresholdPct != null ? int(scalingPlanRampUpSchedule[i].capacityThresholdPct) : 60
+  peakLoadBalancingAlgorithm: scalingPlanPeakSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
   peakStartVMOnConnect: scalingPlanPeakSchedule[i].?startVMs == 'None' ? 'Disable' : (scalingPlanPeakSchedule[i].?startVMs != null ? 'Enable' : null)
-  rampDownMinimumHostsPct: scalingPlanRampDownSchedule[i].?minimumHostsPct != null ? int(scalingPlanRampDownSchedule[i].minimumHostsPct) : null
-  rampDownCapacityThresholdPct: scalingPlanRampDownSchedule[i].?capacityThresholdPct != null ? int(scalingPlanRampDownSchedule[i].capacityThresholdPct) : null
+  rampDownLoadBalancingAlgorithm: scalingPlanRampDownSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
+  rampDownMinimumHostsPct: scalingPlanRampDownSchedule[i].?minimumHostsPct != null ? int(scalingPlanRampDownSchedule[i].minimumHostsPct) : 10
+  rampDownCapacityThresholdPct: scalingPlanRampDownSchedule[i].?capacityThresholdPct != null ? int(scalingPlanRampDownSchedule[i].capacityThresholdPct) : 90
+  rampDownForceLogoffUsers: scalingPlanForceLogoff
+  rampDownWaitTimeMinutes: scalingPlanMinsBeforeLogoff
   rampDownNotificationMessage: scalingPlanForceLogoff
     ? 'You will be logged off in ${scalingPlanMinsBeforeLogoff} minutes. Make sure to save your work.'
-    : null
+    : 'Log off or your session will be disconnected.'
+  rampDownStopHostsWhen: 'ZeroSessions'
   rampDownStartVMOnConnect: scalingPlanRampDownSchedule[i].?startVMs == 'None' ? 'Disable' : (scalingPlanRampDownSchedule[i].?startVMs != null ? 'Enable' : null)
+  offPeakLoadBalancingAlgorithm: scalingPlanOffPeakSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
   offPeakStartVMOnConnect: scalingPlanOffPeakSchedule[i].?startVMs == 'None' ? 'Disable' : (scalingPlanOffPeakSchedule[i].?startVMs != null ? 'Enable' : null)
 })]
 
 // Add Personal-specific properties (session disconnect/logoff actions) without Pooled-specific properties
 var scalingPlanSchedulesPersonal = [for i in range(0, length(scalingPlanRampUpSchedule)): union(scalingPlanSchedulesBase[i], {
-  rampUpStartVMOnConnect: scalingPlanRampUpSchedule[i].?startVMs == 'None' ? 'Disable' : (scalingPlanRampUpSchedule[i].?startVMs != null ? 'Enable' : null)
-  rampUpActionOnDisconnect: scalingPlanRampUpSchedule[i].?disconnectAction
-  rampUpMinutesToWaitOnDisconnect: scalingPlanRampUpSchedule[i].?disconnectMinutes != null ? int(scalingPlanRampUpSchedule[i].disconnectMinutes) : null
-  rampUpActionOnLogoff: scalingPlanRampUpSchedule[i].?logoffAction
-  rampUpMinutesToWaitOnLogoff: scalingPlanRampUpSchedule[i].?logoffMinutes != null ? int(scalingPlanRampUpSchedule[i].logoffMinutes) : null
-  peakActionOnDisconnect: scalingPlanPeakSchedule[i].?disconnectAction
-  peakMinutesToWaitOnDisconnect: scalingPlanPeakSchedule[i].?disconnectMinutes != null ? int(scalingPlanPeakSchedule[i].disconnectMinutes) : null
-  peakActionOnLogoff: scalingPlanPeakSchedule[i].?logoffAction
-  peakMinutesToWaitOnLogoff: scalingPlanPeakSchedule[i].?logoffMinutes != null ? int(scalingPlanPeakSchedule[i].logoffMinutes) : null
-  rampDownActionOnDisconnect: scalingPlanRampDownSchedule[i].?disconnectAction
-  rampDownMinutesToWaitOnDisconnect: scalingPlanRampDownSchedule[i].?disconnectMinutes != null ? int(scalingPlanRampDownSchedule[i].disconnectMinutes) : null
-  rampDownActionOnLogoff: scalingPlanRampDownSchedule[i].?logoffAction
-  rampDownMinutesToWaitOnLogoff: scalingPlanRampDownSchedule[i].?logoffMinutes != null ? int(scalingPlanRampDownSchedule[i].logoffMinutes) : null
-  offPeakActionOnDisconnect: scalingPlanOffPeakSchedule[i].?disconnectAction
-  offPeakMinutesToWaitOnDisconnect: scalingPlanOffPeakSchedule[i].?disconnectMinutes != null ? int(scalingPlanOffPeakSchedule[i].disconnectMinutes) : null
-  offPeakActionOnLogoff: scalingPlanOffPeakSchedule[i].?logoffAction
-  offPeakMinutesToWaitOnLogoff: scalingPlanOffPeakSchedule[i].?logoffMinutes != null ? int(scalingPlanOffPeakSchedule[i].logoffMinutes) : null
+  rampUpLoadBalancingAlgorithm: scalingPlanRampUpSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
+  rampUpStartVMOnConnect: scalingPlanRampUpSchedule[i].?startVMs == 'None' ? 'Disable' : (scalingPlanRampUpSchedule[i].?startVMs != null ? 'Enable' : 'Enable')
+  rampUpActionOnDisconnect: scalingPlanRampUpSchedule[i].?disconnectAction ?? 'None'
+  rampUpMinutesToWaitOnDisconnect: scalingPlanRampUpSchedule[i].?disconnectMinutes != null ? int(scalingPlanRampUpSchedule[i].disconnectMinutes) : 10
+  rampUpActionOnLogoff: scalingPlanRampUpSchedule[i].?logoffAction ?? 'None'
+  rampUpMinutesToWaitOnLogoff: scalingPlanRampUpSchedule[i].?logoffMinutes != null ? int(scalingPlanRampUpSchedule[i].logoffMinutes) : 10
+  peakLoadBalancingAlgorithm: scalingPlanPeakSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
+  peakStartVMOnConnect: scalingPlanPeakSchedule[i].?startVMs == 'None' ? 'Disable' : (scalingPlanPeakSchedule[i].?startVMs != null ? 'Enable' : 'Enable')
+  peakActionOnDisconnect: scalingPlanPeakSchedule[i].?disconnectAction ?? 'None'
+  peakMinutesToWaitOnDisconnect: scalingPlanPeakSchedule[i].?disconnectMinutes != null ? int(scalingPlanPeakSchedule[i].disconnectMinutes) : 10
+  peakActionOnLogoff: scalingPlanPeakSchedule[i].?logoffAction ?? 'None'
+  peakMinutesToWaitOnLogoff: scalingPlanPeakSchedule[i].?logoffMinutes != null ? int(scalingPlanPeakSchedule[i].logoffMinutes) : 10
+  rampDownLoadBalancingAlgorithm: scalingPlanRampDownSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
+  rampDownStartVMOnConnect: scalingPlanRampDownSchedule[i].?startVMs == 'None' ? 'Disable' : (scalingPlanRampDownSchedule[i].?startVMs != null ? 'Enable' : 'Disable')
+  rampDownActionOnDisconnect: scalingPlanRampDownSchedule[i].?disconnectAction ?? 'None'
+  rampDownMinutesToWaitOnDisconnect: scalingPlanRampDownSchedule[i].?disconnectMinutes != null ? int(scalingPlanRampDownSchedule[i].disconnectMinutes) : 10
+  rampDownActionOnLogoff: scalingPlanRampDownSchedule[i].?logoffAction ?? 'Deallocate'
+  rampDownMinutesToWaitOnLogoff: scalingPlanRampDownSchedule[i].?logoffMinutes != null ? int(scalingPlanRampDownSchedule[i].logoffMinutes) : 10
+  rampDownStopHostsWhen: 'ZeroSessions'
+  rampDownForceLogoffUsers: false
+  rampDownWaitTimeMinutes: 0
+  offPeakLoadBalancingAlgorithm: scalingPlanOffPeakSchedule[i].?loadBalancingAlgorithm ?? 'DepthFirst'
+  offPeakStartVMOnConnect: scalingPlanOffPeakSchedule[i].?startVMs == 'None' ? 'Disable' : (scalingPlanOffPeakSchedule[i].?startVMs != null ? 'Enable' : 'Disable')
+  offPeakActionOnDisconnect: scalingPlanOffPeakSchedule[i].?disconnectAction ?? 'None'
+  offPeakMinutesToWaitOnDisconnect: scalingPlanOffPeakSchedule[i].?disconnectMinutes != null ? int(scalingPlanOffPeakSchedule[i].disconnectMinutes) : 10
+  offPeakActionOnLogoff: scalingPlanOffPeakSchedule[i].?logoffAction ?? 'Deallocate'
+  offPeakMinutesToWaitOnLogoff: scalingPlanOffPeakSchedule[i].?logoffMinutes != null ? int(scalingPlanOffPeakSchedule[i].logoffMinutes) : 10
 })]
 
 // Choose the appropriate schedule array based on host pool type
