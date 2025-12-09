@@ -146,16 +146,28 @@ param avdObjectId string = ''
 @description('Optional. The tag used to exclude virtual machines from the scaling plan.')
 param scalingPlanExclusionTag string = ''
 
-@description('Optional. The scaling plan ramp up schedules. Can contain multiple schedules for different day ranges (e.g., Weekdays and Weekends).')
+@description('''Optional. The scaling plan ramp up schedules. Can contain multiple schedules for different day ranges (e.g., Weekdays and Weekends).
+Each schedule object should contain phase-specific properties only:
+- For ALL host pool types: startTime (string in "H:MM" or "HH:MM" format), days (optional, "Weekdays" or "Weekends"), loadBalancingAlgorithm (optional)
+- For Personal host pools ONLY: startVMs, disconnectAction, disconnectMinutes, logoffAction, logoffMinutes
+- For Pooled host pools ONLY: minimumHostsPct, capacityThresholdPct
+Do NOT include properties from other phases (e.g., do not include peakStartTime in rampUpSchedule).
+''')
 param scalingPlanRampUpSchedule array = []
 
-@description('Optional. The scaling plan peak schedules. Can contain multiple schedules for different day ranges (e.g., Weekdays and Weekends).')
+@description('''Optional. The scaling plan peak schedules. Can contain multiple schedules for different day ranges (e.g., Weekdays and Weekends).
+Each schedule object should contain phase-specific properties only. See scalingPlanRampUpSchedule parameter for format details.
+''')
 param scalingPlanPeakSchedule array = []
 
-@description('Optional. The scaling plan rampdown schedules. Can contain multiple schedules for different day ranges (e.g., Weekdays and Weekends).')
+@description('''Optional. The scaling plan rampdown schedules. Can contain multiple schedules for different day ranges (e.g., Weekdays and Weekends).
+Each schedule object should contain phase-specific properties only. See scalingPlanRampUpSchedule parameter for format details.
+''')
 param scalingPlanRampDownSchedule array = []
 
-@description('Optional. The scaling plan off peak schedules. Can contain multiple schedules for different day ranges (e.g., Weekdays and Weekends).')
+@description('''Optional. The scaling plan off peak schedules. Can contain multiple schedules for different day ranges (e.g., Weekdays and Weekends).
+Each schedule object should contain phase-specific properties only. See scalingPlanRampUpSchedule parameter for format details.
+''')
 param scalingPlanOffPeakSchedule array = []
 
 @description('Optional. Determines if the scaling plan will forcefully log off users when scaling down.')
