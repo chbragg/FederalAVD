@@ -946,12 +946,6 @@
 												"max": 2
 											}
 										},
-										"validations": [
-											{
-												"isValid": "[equals(length(map(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => row.days)), length(union(map(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => row.days))))]",
-												"message": "Each schedule type (Weekdays or Weekends) can only be used once across all rows."
-											}
-										],
 										"columns": [
 											{
 												"id": "days",
@@ -971,7 +965,13 @@
 															}
 														],
 														"defaultValue": "Weekdays",
-														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
+														"validations": [
+															{
+																"isValid": "[equals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => equals(row.days, last(take(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, $rowIndex)).days))), 1)]",
+																"message": "Each schedule type (Weekdays or Weekends) can only be used once across all rows."
+															}
+														]
 													}
 												}
 											},
