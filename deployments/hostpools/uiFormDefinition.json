@@ -971,7 +971,7 @@
 															}
 														],
 														"defaultValue": "Weekdays",
-														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1215,7 +1215,7 @@
 															}
 														],
 														"defaultValue": "Weekdays",
-														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1469,7 +1469,7 @@
 															}
 														],
 														"defaultValue": "Weekdays",
-														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
@@ -1722,7 +1722,7 @@
 															}
 														],
 														"defaultValue": "Weekdays",
-														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
+														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]"
 													}
 												}
 											},
