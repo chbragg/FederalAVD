@@ -946,6 +946,12 @@
 												"max": 2
 											}
 										},
+										"validations": [
+											{
+												"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
+												"message": "Each schedule type (Weekdays or Weekends) can only be used once across all rows."
+											}
+										],
 										"columns": [
 											{
 												"id": "days",
@@ -966,12 +972,6 @@
 														],
 														"defaultValue": "Weekdays",
 														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
-														"validations": [
-															{
-																"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
-																"message": "Each schedule type (Weekdays or Weekends) can only be used once."
-															}
-														]
 													}
 												}
 											},
@@ -1190,6 +1190,12 @@
 												"max": 2
 											}
 										},
+										"validations": [
+											{
+												"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayPeakSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayPeakSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
+												"message": "Each schedule type (Weekdays or Weekends) can only be used once across all rows."
+											}
+										],
 										"columns": [
 											{
 												"id": "days",
@@ -1210,12 +1216,6 @@
 														],
 														"defaultValue": "Weekdays",
 														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
-														"validations": [
-															{
-																"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayPeakSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayPeakSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
-																"message": "Each schedule type (Weekdays or Weekends) can only be used once."
-															}
-														]
 													}
 												}
 											},
@@ -1444,6 +1444,12 @@
 												"max": 2
 											}
 										},
+										"validations": [
+											{
+												"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampDownSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampDownSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
+												"message": "Each schedule type (Weekdays or Weekends) can only be used once across all rows."
+											}
+										],
 										"columns": [
 											{
 												"id": "days",
@@ -1464,12 +1470,6 @@
 														],
 														"defaultValue": "Weekdays",
 														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
-														"validations": [
-															{
-																"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampDownSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampDownSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
-																"message": "Each schedule type (Weekdays or Weekends) can only be used once."
-															}
-														]
 													}
 												}
 											},
@@ -1697,6 +1697,12 @@
 												"max": 2
 											}
 										},
+										"validations": [
+											{
+												"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayOffPeakSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayOffPeakSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
+												"message": "Each schedule type (Weekdays or Weekends) can only be used once across all rows."
+											}
+										],
 										"columns": [
 											{
 												"id": "days",
@@ -1717,12 +1723,6 @@
 														],
 														"defaultValue": "Weekdays",
 														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
-														"validations": [
-															{
-																"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayOffPeakSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayOffPeakSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
-																"message": "Each schedule type (Weekdays or Weekends) can only be used once."
-															}
-														]
 													}
 												}
 											},
