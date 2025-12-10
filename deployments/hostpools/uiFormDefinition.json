@@ -968,7 +968,7 @@
 														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
-																"isValid": "[not(contains(take(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, $rowIndex)[*].days, steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule[$rowIndex].days))]",
+																"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
 																"message": "Each schedule type (Weekdays or Weekends) can only be used once."
 															}
 														]
@@ -1212,7 +1212,7 @@
 														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
-																"isValid": "[not(contains(take(steps('controlPlane').scalingPlan.personalWeekdayPeakSchedule, $rowIndex)[*].days, steps('controlPlane').scalingPlan.personalWeekdayPeakSchedule[$rowIndex].days))]",
+																"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayPeakSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayPeakSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
 																"message": "Each schedule type (Weekdays or Weekends) can only be used once."
 															}
 														]
@@ -1466,7 +1466,7 @@
 														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
-																"isValid": "[not(contains(take(steps('controlPlane').scalingPlan.personalWeekdayRampDownSchedule, $rowIndex)[*].days, steps('controlPlane').scalingPlan.personalWeekdayRampDownSchedule[$rowIndex].days))]",
+																"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampDownSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampDownSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
 																"message": "Each schedule type (Weekdays or Weekends) can only be used once."
 															}
 														]
@@ -1618,6 +1618,15 @@
 									"visible": "[and(steps('controlPlane').scalingPlan.deployScalingPlan, steps('controlPlane').scalingPlan.forceLogoff, equals(steps('controlPlane').hostPool.type, 'Pooled'))]"
 								},
 								{
+									"name": "offPeakTextBlock",
+									"type": "Microsoft.Common.TextBlock",
+									"visible": "[and(steps('controlPlane').scalingPlan.deployScalingPlan, equals(steps('controlPlane').hostPool.type, 'Personal'))]",
+									"options": {
+										"text": "<b>Off Peak</b><br>Configures the time at which the scaling plan moves into low-demand mode, using the off-peak schedule to drain users, apply any disconnect/logoff actions, and shut down or hibernate VMs based on your settings."
+
+									}
+								},
+								{
 									"name": "weekdayOffPeakSchedule",
 									"type": "Microsoft.Common.EditableGrid",
 									"ariaLabel": "Enter Weekday Off Peak Schedule Information",
@@ -1710,7 +1719,7 @@
 														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
 														"validations": [
 															{
-																"isValid": "[not(contains(take(steps('controlPlane').scalingPlan.personalWeekdayOffPeakSchedule, $rowIndex)[*].days, steps('controlPlane').scalingPlan.personalWeekdayOffPeakSchedule[$rowIndex].days))]",
+																"isValid": "[and(lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayOffPeakSchedule, (row) => equals(row.days, 'Weekdays'))), 1), lessOrEquals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayOffPeakSchedule, (row) => equals(row.days, 'Weekends'))), 1))]",
 																"message": "Each schedule type (Weekdays or Weekends) can only be used once."
 															}
 														]
