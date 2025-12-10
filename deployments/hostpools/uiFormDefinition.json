@@ -966,6 +966,7 @@
 														],
 														"defaultValue": "Weekdays",
 														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
+														"disabledOptions": "[map(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => not(equals(row.days, last(take(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, $rowIndex)).days))), (item) => item.days)]",
 														"validations": [
 															{
 																"isValid": "[equals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => equals(row.days, last(take(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, $rowIndex)).days))), 1)]",
