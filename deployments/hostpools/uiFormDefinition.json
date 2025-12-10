@@ -966,10 +966,9 @@
 														],
 														"defaultValue": "Weekdays",
 														"required": "[equals(steps('controlPlane').hostPool.type, 'Personal')]",
-														"disabledOptions": "[map(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => not(equals(row.days, last(take(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, $rowIndex)).days))), (item) => item.days)]",
 														"validations": [
 															{
-																"isValid": "[equals(length(filter(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, (row) => equals(row.days, last(take(steps('controlPlane').scalingPlan.personalWeekdayRampUpSchedule, $rowIndex)).days))), 1)]",
+																"isValid": "[startsWith(last(take(steps('grid').personalWeekdayRampUpSchedule, $rowIndex)).colName, 'days')]",
 																"message": "Each schedule type (Weekdays or Weekends) can only be used once across all rows."
 															}
 														]
